@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:lastest
 
 # shell
 RUN /bin/sh
