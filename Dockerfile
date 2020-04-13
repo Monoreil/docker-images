@@ -16,4 +16,7 @@ RUN mkdir /www
 
 #interect /www ang simpleHTTPserver porting 8000    
 RUN cd /www
-RUN python -m SimpleHTTPServer 8000
+
+CMD["python -m SimpleHTTPServer 8000"]
+
+///RUN python -m SimpleHTTPServer 8000
