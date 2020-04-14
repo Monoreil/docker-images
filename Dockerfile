@@ -6,11 +6,11 @@ RUN /bin/sh
 #timezon install
 RUN apk add tzdata && \
       cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
-      echo 'Asia/Seoul' > /ect/timezone && \
+      echo 'Asia/Seoul' > /etc/timezone && \
       apk del tzdata  && \
-      apk add python && \
-      mkdir -p /www && \
-      cd /www
+      apk add python 
+
+WORKDIR /www
 
 
-CMD ["python -m SimpleHTTPServer 8000"]
+ENTRYPOINT ["python", "-m", "SimpleHTTPServer", "8000"]
