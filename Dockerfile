@@ -4,19 +4,13 @@ FROM alpine:latest
 RUN /bin/sh
 
 #timezon install
-RUN apk add tzdata
+RUN apk add tzdata && \
+      cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
+      echo 'Asia/Seoul' > /ect/timezone && \
+      apk del tzdata  && \
+      apk add python && \
+      mkdir -p /www && \
+      cd /www
 
-#time set KST
-RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/local
-#intstall python
-RUN apk add python
-
-#make /www directory
-RUN mkdir /www
-
-#interect /www ang simpleHTTPserver porting 8000    
-RUN cd /www
 
 CMD ["python -m SimpleHTTPServer 8000"]
-
-#RUN python -m SimpleHTTPServer 8000
