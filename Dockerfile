@@ -1,16 +1,10 @@
-FROM alpine:latest
+FROM centos:7
 
-# shell
-RUN /bin/sh
+RUN yum update -y && \
+yum upgrade -y && \
+yum install -y java-1.8.0-openjdk-devel.x86_64  
 
-#timezon install
-RUN apk add tzdata && \
-      cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
-      echo 'Asia/Seoul' > /etc/timezone && \
-      apk del tzdata  && \
-      apk add python 
+WORKDIR /javawork
 
-WORKDIR /www
+#VOLUME ["/javawork"]
 
-
-ENTRYPOINT ["python", "-m", "SimpleHTTPServer", "8000"]
